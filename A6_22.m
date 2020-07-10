@@ -7,12 +7,6 @@ nucleo = fastaread('sequence_2.txt');
 seq1 = lysozyme.Sequence;
 seq2 = nucleo.Sequence;
 
-if (strlength(seq2)>strlength(seq1)),
-    temp = seq2;
-    seq2 = seq1;
-    seq1 = temp;
-end
-
 
 
 sm = [1 -1 -1 -1;
@@ -50,25 +44,23 @@ seqs1 = [];
 seqs2 = [];
 k = 2;
 p =1;
-for i = a:-1:2,
+for i = a:-1:2
     score = 0;
     l = i; 
-    letters1 = [];
-    letters2 = [];
-    for j = 2:k,
+    for j = 2:k
         score = score + F(l,j);
         try
-            letters1 = [letters1 seq1(l-1)];
-            letters2 = [letters2 seq2(j-1)];
+            seqs1 = [seqs1 seq1(l-1)];
+            seqs2 = [seqs2 seq2(j-1)];
         catch
-            letters2 = [letters2 '-'];
+            seqs2 = [seqs2 '-']; %add empty elements to the matrix
         end
         l = l+1;
     end
     k = k+1;
     scores = [scores score];
-    seqs1 =[seqs1 string(letters1)];
-    seqs2 =[seqs2 string(letters2)];
+    seqs1 =[seqs1 string(seqs1)];
+    seqs2 =[seqs2 string(seqs2)];
 end
 toc
 disp(newline)
@@ -77,7 +69,7 @@ maximum = max(scores);
 indexes = find(scores ==maximum);
 final1 = [];
 final2 = [];
-for q = 1:length(indexes),
+for q = 1:length(indexes)
     final1 = [final1 seqs1(indexes(q))];
     final2 = [final2 seqs2(indexes(q))];
 end
