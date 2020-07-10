@@ -93,8 +93,11 @@ elseif player_choice ==2
     disp("Player 1 made the last move and won the game!");
 end
 
-% move1 subtracts nucleotides from one sequence 
-% move2 subtracts nucleotides from both sequences
+%-----------------------------------------------------
+%                       Note:                        |
+% Move1 subtracts nucleotides from one sequence.     |
+% Move2 subtracts nucleotides from both sequences.   |
+%-----------------------------------------------------
 
 % Player1 "playbook" (random playstyle).
 function [new_seq1,new_seq2] = Player1(seq1,seq2,m,n)
@@ -112,14 +115,14 @@ function [new_seq1,new_seq2] = Player1(seq1,seq2,m,n)
             seq1 = seq1(2:end); % Win by subtract nucleotides from one sequence(Move1).
         end
     else
-        c = randi([1 3],1);     % Random choose of movement.
-        if c == 1               % Move2.
+        move = randi([1 3],1);     % Random choose of movement.
+        if move == 1               % Move2.
             num = randi([1 min(m,n)],1); %Random number of nucleotides. 
             for i = 1:num         
                 seq1 = seq1(2:end);  % Will be deleted.
                 seq2 = seq2(2:end);
             end
-        elseif c == 2               % Move1.
+        elseif move == 2            % Move1.
             num = randi([1 m],1);   % Random number of nucleotides. 
             for i = 1:num           % Will be deleted
                 seq1 = seq1(2:end);
@@ -152,14 +155,14 @@ function [new_seq1,new_seq2] = Player2(seq1,seq2,m,n)
             seq1 = seq1(2:end); % Win by subtract nucleotides from one sequence(Move1).
         end
     else
-        c = randi([1 3],1);     % Random choose of movement.
-        if c == 1               % Move2.
+        move = randi([1 3],1);     % Random choose of movement.
+        if move == 1               % Move2.
             num = randi([1 min(m,n)],1); %Random number of nucleotides. 
             for i = 1:num         
                 seq1 = seq1(2:end);  % Will be deleted.
                 seq2 = seq2(2:end);
             end
-        elseif c == 2               % Move1.
+        elseif move == 2            % Move1.
             num = randi([1 m],1);   % Random number of nucleotides. 
             for i = 1:num           % Will be deleted
                 seq1 = seq1(2:end);
